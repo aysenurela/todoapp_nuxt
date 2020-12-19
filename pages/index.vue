@@ -5,36 +5,62 @@
       <h1 class="title">
         todoapp
       </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+      <div class="todos">
+        <ul>
+          <li 
+            v-for="(todo, index) in todos" 
+            :key="index"
+            @click="checkTodo(todo.id)"
+            v-bind:class="{checked: todo.isChecked}"
+          >
+            {{todo.description}}
+          </li>
+        </ul>
+        <form>
+          <input type="text" placeholder="New todo" v-model="todoDesc">
+          <button @click.prevent="addTodo">Add todo</button>
+        </form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      todoDesc: '',
+    }
+  },
+  
+  // Since Vuex stores are reactive, the simplest way to "retrieve" state from it is simply returning some store state from within a computed property
+  computed: {
+    todos() {
+      return this.$store.state.todos
+    }
+  },
+  
+  methods: {
+    addTodo() {
+      if (this.todoDesc) {
+        this.$store.commit('addTodo', {
+          description: this.todoDesc,
+          isChecked: false,
+          id: +new Date()
+        });
+        this.todoDesc = ''
+      }
+    },
+    checkTodo(id) {
+      this.$store.commit('checkTodo', id)
+    }
+  }
+}
 </script>
 
 <style>
 .container {
   margin: 0 auto;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,20 +80,16 @@ export default {}
     sans-serif;
   display: block;
   font-weight: 300;
-  font-size: 100px;
+  font-size: 50px;
   color: #35495e;
   letter-spacing: 1px;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+li {
+  cursor: pointer;
 }
 
-.links {
-  padding-top: 15px;
+li.checked {
+  text-decoration: line-through;
 }
 </style>

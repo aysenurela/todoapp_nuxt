@@ -90,3 +90,7 @@ sw.*
 *.swp
 
 OneSignalSDK*
+
+.firebaserc
+firebase.json
+.firebase/

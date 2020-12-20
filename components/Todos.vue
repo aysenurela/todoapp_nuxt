@@ -25,6 +25,10 @@ export default {
       todoDesc: '',
     }
   },
+
+  beforeMount: function() {
+    this.$store.commit('initialiseStore')
+  },
   
   // Since Vuex stores are reactive, the simplest way to "retrieve" state from it is simply returning some store state from within a computed property
   computed: {

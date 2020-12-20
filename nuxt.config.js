@@ -11,7 +11,7 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/png', href: '/list.png' }
     ]
   },
 
@@ -21,6 +21,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    '~/plugins/notification.js'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -28,13 +29,11 @@ export default {
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
-    '@nuxtjs/onesignal',
     '@nuxtjs/pwa',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    '@nuxtjs/onesignal',
     '@nuxtjs/pwa'
   ],
 
@@ -42,13 +41,16 @@ export default {
   build: {
   },
 
-  oneSignal: {
-    init: {
-      appId: '',
-      allowLocalhostAsSecureOrigin: true,
-      welcomeNotification: {
-          disable: true
-      }
+  pwa: {
+    icon: {
+      fileName: 'list.png'
     }
+  },
+
+  manifest: {
+    short_name: 'td',
+    name: 'Todo App',
+    start_url: '/',
+    theme_color: '#cbcbcb',
   }
 }

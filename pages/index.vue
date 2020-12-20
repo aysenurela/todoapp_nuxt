@@ -6,12 +6,23 @@
         todoapp
       </h1>
       <Todos />
+      <notifications group="entry"/>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  mounted() {
+    if (!window.matchMedia('(display-mode: standalone)').matches) {
+      this.$notify({
+        'group': 'entry',
+        'title': 'REMINDER',
+        'text': 'You can install the application on your device.'
+      });
+    }
+  }
+}
 </script>
 
 <style>

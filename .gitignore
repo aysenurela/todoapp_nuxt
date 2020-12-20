@@ -89,8 +89,6 @@ sw.*
 # Vim swap files
 *.swp
 
-OneSignalSDK*
-
 .firebaserc
 firebase.json
 .firebase/

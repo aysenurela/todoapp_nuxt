@@ -1,5 +1,14 @@
 # todoapp
 
+Basic Progressive Web Application to add, check, delete and display todo list items
+>LIVE: https://todoapp-nuxt.web.app/
+
+## Stack & Libraries
+
+  - [**``NuxtJS``**](https://nuxtjs.org/)
+  - [**``nuxt/pwa``**](https://pwa.nuxtjs.org/)
+  - [**``vue-notification``**](https://www.npmjs.com/package/vue-notification)
+
 ## Build Setup
 
 ```bash
